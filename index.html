@@ -1,1 +1,1031 @@
-test
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OFFREST - ìì¸ ë±ì´ë ì¤íìí° ì»¤í¼ ë¡ì¤í°ë¦¬">
+    <title>OFFREST | ì¤íë ì¤í¸ - A REST, PASSED ON.</title>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #000;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        header.hide {
+            transform: translateY(-100%);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo a {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #000;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            color: #8DD998;
+        }
+
+        .nav-cart {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-cart:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            header {
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        /* Sections */
+        section {
+            scroll-margin-top: 60px;
+        }
+
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            min-height: 100vh;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-logo {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInLogo 1s ease 0.3s forwards;
+        }
+
+        .hero-logo span {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .hero-tagline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-align: center;
+            line-height: 1.3;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .hero-tagline span {
+            color: #8DD998;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards, bounce 2s ease-in-out 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes fadeInLogo {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-logo {
+                width: 140px;
+                height: 140px;
+                margin-bottom: 2rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Content Wrapper */
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Coffee Section */
+        .coffee {
+            padding: 6rem 0;
+            background: #fff;
+        }
+
+        .coffee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .product-card:hover {
+            border-color: #8DD998;
+            box-shadow: 0 8px 24px rgba(141, 217, 152, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: #262626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 3rem;
+        }
+
+        .product-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        .product-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-roast {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            background: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .product-notes {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-notes strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #000;
+        }
+
+        .product-size {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-buy {
+            background: #8DD998;
+            color: #000;
+            border: none;
+            padding: 0.9rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            letter-spacing: 0.05em;
+            margin-top: auto;
+        }
+
+        .btn-buy:hover {
+            background: #7bc88a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(141, 217, 152, 0.3);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 6rem 0;
+            background: #f8f8f8;
+        }
+
+        .process-intro {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #333;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .process-intro strong {
+            color: #8DD998;
+            font-weight: 700;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .step {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-arrow {
+            display: none;
+        }
+
+        @media (min-width: 769px) {
+            .process-steps {
+                gap: 1rem;
+            }
+
+            .step {
+                position: relative;
+            }
+
+            .step:not(:last-child)::after {
+                content: "â";
+                position: absolute;
+                right: -2rem;
+                top: 2.5rem;
+                font-size: 2rem;
+                color: #ccc;
+            }
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .process-highlight {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 4rem;
+            border-left: 4px solid #8DD998;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+        }
+
+        .process-highlight-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .process-highlight-sub {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .process-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .spec {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .spec:nth-child(1) { animation-delay: 0.6s; }
+        .spec:nth-child(2) { animation-delay: 0.7s; }
+        .spec:nth-child(3) { animation-delay: 0.8s; }
+
+        .spec-label {
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* Rest Card Section */
+        .rest-section {
+            padding: 6rem 0;
+            background: #fff;
+        }
+
+        .rest-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .rest-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: -0.01em;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .rest-title span {
+            color: #8DD998;
+        }
+
+        .rest-card-visual {
+            background: linear-gradient(135deg, #262626 0%, #000 100%);
+            color: #fff;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .rest-card-badge {
+            display: inline-block;
+            border: 2px solid #8DD998;
+            color: #8DD998;
+            padding: 0.5rem 1.5rem;
+            border-radius: 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+        }
+
+        .rest-card-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rest-card-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+
+        .rest-description {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+
+        .rest-quote {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 3rem 0;
+            line-height: 1.6;
+            color: #000;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .rest-quote span {
+            color: #8DD998;
+        }
+
+        .rest-mission {
+            font-size: 1.1rem;
+            text-align: center;
+            color: #666;
+            line-height: 1.8;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: #f8f8f8;
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-intro {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .about-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .about-highlight {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 3px solid #8DD998;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+
+        .about-highlight strong {
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-info span {
+            color: #999;
+        }
+
+        .footer-info strong {
+            color: #fff;
+        }
+
+        .footer-social {
+            margin: 2rem 0;
+        }
+
+        .footer-social a {
+            color: #8DD998;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #7bc88a;
+        }
+
+        .footer-tagline {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            letter-spacing: 0.05em;
+            color: #8DD998;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: #666;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        @media (max-width: 768px) {
+            .footer-info {
+                gap: 1rem;
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+        }
+
+        .fade-in.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .coffee-grid {
+                gap: 1.5rem;
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                gap: 1rem;
+            }
+
+            .step:not(:last-child)::after {
+                right: auto;
+                top: auto;
+            }
+
+            .process,
+            .coffee,
+            .rest-section,
+            .about {
+                padding: 4rem 0;
+            }
+
+            .rest-card-visual {
+                padding: 2rem;
+            }
+
+            .rest-title {
+                font-size: 1.8rem;
+            }
+
+            .rest-card-icon {
+                font-size: 3rem;
+            }
+
+            .rest-quote {
+                font-size: 1.3rem;
+            }
+
+            .process-highlight {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header id="header">
+        <nav>
+            <div class="nav-logo">
+                <a href="#hero">OFF'REST</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#coffee" onclick="scrollTo('coffee')">coffee</a></li>
+                <li><a href="#about" onclick="scrollTo('about')">about</a></li>
+                <li><a href="#info" onclick="scrollTo('info')">info</a></li>
+                <li>
+                    <a href="https://smartstore.naver.com/coffeebeanstory" target="_blank" class="nav-cart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-logo">
+            <span>OFF'REST</span>
+        </div>
+        <div class="hero-tagline">
+            FIND YOUR <span>REST</span>,<br>FEEL YOUR <span>REST</span>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Coffee Section -->
+    <section class="coffee" id="coffee">
+        <div class="content">
+            <h2 class="section-title">BEAN LINEUP</h2>
+            <div class="coffee-grid">
+                <!-- OFF Blend -->
+                <div class="product-card">
+                    <div class="product-image">â</div>
+                    <div class="product-content">
+                        <h3 class="product-name">OFF blend</h3>
+                        <p class="product-description">ê· í ì¡í ë¨ë§ê³¼ ë¶ëë¬ì´ ì§ê°</p>
+                        <span class="product-roast">MEDIUM DARK</span>
+                        <p class="product-notes"><strong>ë¸í¸:</strong> ì´ì½ë¦¿ Â· ê²¬ê³¼ë¥ Â· ìºë¬ë©</p>
+                        <div class="product-price">9,000ì</div>
+                        <div class="product-size">(100g)</div>
+                        <a href="https://smartstore.naver.com/coffeebeanstory" target="_blank" class="btn-buy">êµ¬ë§¤íê¸°</a>
+                    </div>
+                </div>
+
+                <!-- ON Blend -->
+                <div class="product-card">
+                    <div class="product-image">â</div>
+                    <div class="product-content">
+                        <h3 class="product-name">ON blend</h3>
+                        <p class="product-description">ì ë¹í ì°ë¯¸ì ë°¸ë°ì¤ ì¡í ë¨ë§</p>
+                        <span class="product-roast">MEDIUM</span>
+                        <p class="product-notes"><strong>ë¸í¸:</strong> ë² ë¦¬ Â· ë³µì­ì Â· ì°ë»í ì¬ì´</p>
+                        <div class="product-price">9,000ì</div>
+                        <div class="product-size">(100g)</div>
+                        <a href="https://smartstore.naver.com/coffeebeanstory" target="_blank" class="btn-buy">êµ¬ë§¤íê¸°</a>
+                    </div>
+                </div>
+
+                <!-- DECAF -->
+                <div class="product-card">
+                    <div class="product-image">â</div>
+                    <div class="product-content">
+                        <h3 class="product-name">DECAF</h3>
+                        <p class="product-description">ì¹´íì¸ì ì¤ì´ê³ ë íë¯¸ë ê·¸ëë¡</p>
+                        <span class="product-roast">MEDIUM DARK</span>
+                        <p class="product-notes"><strong>ë¸í¸:</strong> ì¹´ë¼ë© Â· ë¨ë§ Â· ë¶ëë¬ì´ ë°ë</p>
+                        <div class="product-price">9,000ì</div>
+                        <div class="product-size">(100g)</div>
+                        <a href="https://smartstore.naver.com/coffeebeanstory" target="_blank" class="btn-buy">êµ¬ë§¤íê¸°</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="info">
+        <div class="content">
+            <h2 class="section-title">ì£¼ë¬¸ ê³¼ì </h2>
+            <p class="process-intro">ì£¼ë¬¸ í ë¡ì¤í. <strong>ê°ì¥ ë§ìë íì´ë°ì</strong> ë³´ë´ëë¦½ëë¤.</p>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">ì£¼ë¬¸íì¸</h3>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">ìë ë¡ì¤í</h3>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">ëê°ì±</h3>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">í¬ì¥Â·ë°ì¡</h3>
+                </div>
+            </div>
+
+            <div class="process-highlight">
+                <div class="process-highlight-text">â° ì¤í 1ì ì´ì  ê²°ì  ì ë¹ì¼ ë°ì¡</div>
+                <div class="process-highlight-sub">ì ì í ì»¤í¼ë¥¼ ìµì ì íì´ë°ì ë°ì¼ì¸ì</div>
+            </div>
+
+            <div class="process-specs">
+                <div class="spec">
+                    <div class="spec-label">LINEUP</div>
+                    <div class="spec-value">3ì¢</div>
+                </div>
+                <div class="spec">
+                    <div class="spec-label">ROAST TO SHIP</div>
+                    <div class="spec-value">72h</div>
+                </div>
+                <div class="spec">
+                    <div class="spec-label">BATCH</div>
+                    <div class="spec-value">ìë</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest Card Section -->
+    <section class="rest-section">
+        <div class="content">
+            <div class="rest-container">
+                <h2 class="rest-title"><span>A REST,</span> PASSED ON.</h2>
+
+                <div class="rest-card-visual">
+                    <div class="rest-card-badge">REST CARD</div>
+                    <div class="rest-card-icon">ð«</div>
+                    <div class="rest-card-text">ê³ ê°ëì ì¼ ë°©ë²ì<br>ê³µì í´ì£¼ì¸ì</div>
+                </div>
+
+                <p class="rest-quote">
+                    "ëì íë£¨ë<br><span>ê³ ì 24ìê°ì´ë©´ ëë©ëë¤</span>"
+                </p>
+
+                <div class="rest-description">
+                    <p class="rest-mission">
+                        ìëì í¨ê», ìì í´ìì ê±´ëµëë¤.<br>
+                        <br>
+                        OFFRESTììë ê³ ê°ëì´ ì°ì  'ì¼ì ë°©ë²'ì ì¹´ëì ë´ì ë¤ì êµ¬ë§¤ììê² ì ë¬í©ëë¤.<br>
+                        ëêµ°ê°ì í´ìì´ ë ë¤ë¥¸ ëêµ°ê°ì ìë¡ê° ëë ê²½íì í¨ê» ë§ë¤ì´ê°ê³  ì¶ìµëë¤.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="content">
+            <div class="about-container">
+                <h2 class="section-title">OFFREST</h2>
+                <p class="about-intro">ìì¸ ë±ì´ë, ë¡ì¤íì¤ì ê²¸ë¹í ì¹´í</p>
+
+                <div class="about-content">
+                    <p>
+                        OFFRESTë ë¨ìí ì»¤í¼ë¥¼ íë§¤íë ê³³ì´ ìëëë¤.<br>
+                        ì ì í ë¡ì¤í, ì ì± ì´ë¦° ìë¹ì¤, ê·¸ë¦¬ê³  ê³ ê°ê³¼ì ìíµ ììì<br>
+                        ì§ì í í´ìì ìë¯¸ë¥¼ í¨ê» ì°¾ìê°ê³  ììµëë¤.
+                    </p>
+                </div>
+
+                <div class="about-highlight">
+                    <p>
+                        ë§¤ì¼ <strong>ì¤ì  10ìë¶í° ì¤í 6ì</strong>ê¹ì§<br>
+                        ìì¸ì ê°ìêµ¬ ë±ì´ëìì ë¬¸ì ì´ê³  ììµëë¤.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <div><strong>ìí¸ëª</strong> <span>ì¤íë ì¤í¸</span></div>
+                <div><strong>ìì¬ì§</strong> <span>ìì¸ì ê°ìêµ¬ ë±ì´ë</span></div>
+                <div><strong>Since</strong> <span>2024 â</span></div>
+            </div>
+
+            <div class="footer-social">
+                <p>
+                    Follow us: <a href="https://www.instagram.com/off.rest" target="_blank">@off.rest</a>
+                </p>
+            </div>
+
+            <div class="footer-tagline">
+                FIND YOUR REST, FEEL YOUR REST
+            </div>
+
+            <div class="footer-copyright">
+                Â© 2026 OFFREST. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll navigation
+        function scrollTo(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Header hide/show on scroll
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                header.classList.add('hide');
+            } else {
+                // Scrolling up
+                header.classList.remove('hide');
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.section-title, .product-card, .step, .process-highlight, .spec, .rest-title, .rest-card-visual, .rest-quote, .rest-description, .rest-mission, .about-intro, .about-content, .about-highlight').forEach(element => {
+            element.classList.add('fade-in');
+            observer.observe(element);
+        });
+
+        // Smooth scroll behavior for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Prevent smooth scroll on external links
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
