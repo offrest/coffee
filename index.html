@@ -656,6 +656,265 @@
                 gap: 30px;
             }
         }
+    
+        /* ===== BRAND STORY SECTION ===== */
+        .brand-story {
+            background-color: #0a0a0a;
+            color: #fff;
+            padding: 120px 40px;
+        }
+
+        .brand-story .content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .story-block {
+            margin-bottom: 120px;
+        }
+
+        .story-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            color: #8DD998;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .story-eyebrow.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-heading {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .story-heading.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-body {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #bbb;
+            max-width: 640px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s;
+        }
+
+        .story-body.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-body strong {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .story-body p + p {
+            margin-top: 16px;
+        }
+
+        /* Quality specs grid */
+        .quality-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 0;
+            border-top: 1px solid #222;
+            margin-top: 48px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+
+        .quality-grid.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quality-row {
+            display: contents;
+        }
+
+        .quality-label {
+            padding: 24px 0;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: #888;
+            border-bottom: 1px solid #222;
+            text-transform: uppercase;
+        }
+
+        .quality-value {
+            padding: 24px 0;
+            font-size: 1rem;
+            color: #fff;
+            border-bottom: 1px solid #222;
+        }
+
+        .quality-value .mint {
+            color: #8DD998;
+            font-weight: 600;
+        }
+
+        .quality-value .small {
+            color: #888;
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+
+        /* Big stat */
+        .stat-block {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 8rem;
+            font-weight: 800;
+            color: #8DD998;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .stat-number.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .stat-number .percent {
+            font-size: 4.5rem;
+            margin-left: 4px;
+        }
+
+        .stat-caption {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .stat-caption .mint {
+            color: #8DD998;
+        }
+
+        .stat-source {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Keywords chart */
+        .keywords {
+            margin-top: 56px;
+        }
+
+        .keyword-row {
+            display: grid;
+            grid-template-columns: 160px 1fr 60px;
+            gap: 20px;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #1a1a1a;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .keyword-row.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .keyword-row:nth-child(1).visible { transition-delay: 0.05s; }
+        .keyword-row:nth-child(2).visible { transition-delay: 0.10s; }
+        .keyword-row:nth-child(3).visible { transition-delay: 0.15s; }
+        .keyword-row:nth-child(4).visible { transition-delay: 0.20s; }
+        .keyword-row:nth-child(5).visible { transition-delay: 0.25s; }
+        .keyword-row:nth-child(6).visible { transition-delay: 0.30s; }
+
+        .keyword-label {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .keyword-bar {
+            height: 6px;
+            background-color: #1a1a1a;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .keyword-bar-fill {
+            height: 100%;
+            background-color: #8DD998;
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.2s ease 0.3s;
+        }
+
+        .keyword-row.visible .keyword-bar-fill {
+            width: var(--bar-width);
+        }
+
+        .keyword-count {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (max-width: 768px) {
+            .brand-story {
+                padding: 80px 24px;
+            }
+            .story-heading {
+                font-size: 2rem;
+            }
+            .stat-number {
+                font-size: 5rem;
+            }
+            .stat-number .percent {
+                font-size: 3rem;
+            }
+            .quality-grid {
+                grid-template-columns: 1fr;
+            }
+            .quality-label {
+                padding-bottom: 4px;
+                border: none;
+            }
+            .quality-value {
+                padding-top: 4px;
+            }
+            .keyword-row {
+                grid-template-columns: 120px 1fr 50px;
+                gap: 12px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -773,6 +1032,57 @@
     </section>
 
 
+
+    <!-- ===== BRAND STORY SECTION ===== -->
+    <section class="brand-story">
+        <div class="content">
+            <!-- Story: not just a roastery -->
+            <div class="story-block">
+                <div class="story-eyebrow">01 · 오프레스트 이야기</div>
+                <h2 class="story-heading">단순한<br>로스터리가<br>아닙니다.</h2>
+                <div class="story-body">
+                    <p>오프레스트는 단순히 원두를 납품하는 로스터리가 아니라, 각 공간의 분위기와 방향성에 맞춘 커피를 함께 만들어가는 파트너를 지향합니다.</p>
+                    <p><strong>로스팅 연구, 품질 관리, 지속적인 업데이트.</strong> 언제나 '조금 더 정돈된 커피'를 고민합니다.</p>
+                </div>
+            </div>
+
+            <!-- Quality: equipment & management -->
+            <div class="story-block">
+                <div class="story-eyebrow">02 · 로스팅과 품질 관리</div>
+                <h2 class="story-heading">장비부터<br>관리까지.</h2>
+                <div class="quality-grid">
+                    <div class="quality-label">로스팅 장비</div>
+                    <div class="quality-value"><span class="mint">Giesen W6</span><span class="small">유럽 네덜란드 하이엔드 로스터기</span></div>
+                    <div class="quality-label">QC 시스템</div>
+                    <div class="quality-value">수분·색도 측정 / 실시간 온도 모니터링 / 품질 관리</div>
+                    <div class="quality-label">신선도 관리</div>
+                    <div class="quality-value">로스팅 후 24시간 이내 포장</div>
+                    <div class="quality-label">사용 권장</div>
+                    <div class="quality-value">로스팅 <span class="mint">5–7일</span> 후 최적 향미 발현</div>
+                </div>
+            </div>
+
+            <!-- Customer: verified taste -->
+            <div class="story-block">
+                <div class="story-eyebrow">03 · 손님이 증명한 맛</div>
+                <div class="stat-block">
+                    <div class="stat-number">80.7<span class="percent">%</span></div>
+                    <div class="stat-caption">전체 리뷰 1,382건 중 1,115건이 <span class="mint">"커피가 맛있어요"</span></div>
+                    <div class="stat-source">네이버 플레이스 방문자 리뷰 전수 분석<br>2022 – 2026 · 4년간 1,382건 기준</div>
+                </div>
+
+                <div class="keywords">
+                    <div class="keyword-row"><div class="keyword-label">커피가 맛있어요</div><div class="keyword-bar"><div class="keyword-bar-fill" style="--bar-width: 100%"></div></div><div class="keyword-count">1,115</div></div>
+                    <div class="keyword-row"><div class="keyword-label">인테리어가 멋져요</div><div class="keyword-bar"><div class="keyword-bar-fill" style="--bar-width: 67%"></div></div><div class="keyword-count">746</div></div>
+                    <div class="keyword-row"><div class="keyword-label">디저트가 맛있어요</div><div class="keyword-bar"><div class="keyword-bar-fill" style="--bar-width: 61%"></div></div><div class="keyword-count">681</div></div>
+                    <div class="keyword-row"><div class="keyword-label">집중하기 좋아요</div><div class="keyword-bar"><div class="keyword-bar-fill" style="--bar-width: 42%"></div></div><div class="keyword-count">472</div></div>
+                    <div class="keyword-row"><div class="keyword-label">음료가 맛있어요</div><div class="keyword-bar"><div class="keyword-bar-fill" style="--bar-width: 40%"></div></div><div class="keyword-count">448</div></div>
+                    <div class="keyword-row"><div class="keyword-label">음악이 좋아요</div><div class="keyword-bar"><div class="keyword-bar-fill" style="--bar-width: 31%"></div></div><div class="keyword-count">348</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== ABOUT SECTION ===== -->
     <section class="about" id="about">
         <h2 class="about-title">OFFREST</h2>
@@ -832,7 +1142,7 @@
         }, observerOptions);
 
         // Observe all elements with fade-in classes
-        document.querySelectorAll('.section-label, .bean-card, .process-title, .process-subtitle, .process-steps, .process-highlight, .process-specs, .rest-title, .rest-card-container, .about-title, .about-subtitle, .about-content').forEach(el => {
+        document.querySelectorAll('.section-label, .bean-card, .process-title, .process-subtitle, .process-steps, .process-highlight, .process-specs, .rest-title, .rest-card-container, .about-title, .about-subtitle, .about-content, .story-eyebrow, .story-heading, .story-body, .quality-grid, .stat-number, .keyword-row').forEach(el => {
             observer.observe(el);
         });
 
