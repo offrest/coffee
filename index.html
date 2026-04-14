@@ -60,6 +60,20 @@
             display: block;
         }
 
+        .logo img {
+            height: 38px;
+            width: auto;
+            display: block;
+        }
+
+        .hero-logo img {
+            max-width: 420px;
+            width: 80%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
         .nav-links {
             display: flex;
             gap: 40px;
@@ -743,10 +757,7 @@
 <body>
     <!-- ===== HEADER ===== -->
     <header id="header">
-        <a href="#home" class="logo">
-            <span>OFF'</span>
-            <span>REST</span>
-        </a>
+        <a href="#home" class="logo"><img src="logo-black.png" alt="OFFREST"></a>
         <nav class="nav-links">
             <a href="#bean-lineup">coffee</a>
             <a href="#about">about</a>
@@ -757,10 +768,7 @@
 
     <!-- ===== HERO SECTION ===== -->
     <section class="hero" id="home">
-        <div class="hero-logo">
-            <span>OFF'</span>
-            <span>REST</span>
-        </div>
+        <div class="hero-logo"><img src="logo-white.png" alt="OFFREST"></div>
         <div class="hero-tagline">
             <div><span class="hero-tagline-mint">Find your rest,</span></div>
             <div><span class="hero-tagline-mint">Feel your rest</span></div>
